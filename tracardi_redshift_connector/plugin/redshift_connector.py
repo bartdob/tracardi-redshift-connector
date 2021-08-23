@@ -17,7 +17,7 @@ def redshift_conn(*args, ** kwargs):
                                 host='3.123.191.145', #ipadres
                                 port=5439,
                                 user='awsuser',
-                                password='Kaloryfer1')
+                                password='*************')
 
         print("SUCCESS")
         cur = conn.cursor()
