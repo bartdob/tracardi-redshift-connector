@@ -2,22 +2,17 @@ import psycopg2
 import pprint
 
 
-def redshift_conn(*args, ** kwargs):
+def redshift_conn(*args, **kwargs):
     print("start connection")
+    print(kwargs)
 
-    # configuration = {'dbname': 'database_name',
-    #                  'user': 'user_name',
-    #                  'pwd': 'user_password',
-    #                  'host': 'redshift_endpoint',
-    #                  'port': 'redshift_password'
-    #                  }
 
     try:
-        conn = psycopg2.connect(dbname='dev',
-                                host='3.123.191.145', #ipadres
-                                port=5439,
-                                user='awsuser',
-                                password='Kaloryfer1')
+        conn = psycopg2.connect(dbname=kwargs['dbname'],
+                                user=kwargs['user'],
+                                password=kwargs['password'],
+                                host=kwargs['host'],
+                                port=kwargs['port'])
 
         print("SUCCESS")
         cur = conn.cursor()
