@@ -6,7 +6,6 @@ def redshift_conn(*args, **kwargs):
     print("start connection")
     print(kwargs)
 
-
     try:
         conn = psycopg2.connect(dbname=kwargs['dbname'],
                                 user=kwargs['user'],
