@@ -16,7 +16,7 @@ class RedshiftConnectorAction(ActionRunner):
         self.database = kwargs['port'] if 'port' in kwargs else '5439'
 
     async def run(self, query):
-        result = await (self.redshift_conn(), query)
+        result = await (redshift_conn(), query)
         return Result(port="payload", value=result)
 
 
