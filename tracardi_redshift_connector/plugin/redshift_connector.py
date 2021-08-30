@@ -3,8 +3,8 @@ import pprint
 
 
 def redshift_conn(*args, **kwargs):
-    print("start connection")
-    print(kwargs)
+    # print("start connection")
+    # print(kwargs)
 
     try:
         conn = psycopg2.connect(dbname=kwargs['dbname'],
@@ -15,16 +15,17 @@ def redshift_conn(*args, **kwargs):
 
         print("SUCCESS")
         cur = conn.cursor()
-        cur.execute("SELECT * FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema';")
+        # cur.execute("SELECT * FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema';")
+        cur.execute(query=kwargs['query'])
         rows = cur.fetchall()
         for row in rows:
             print (row)
         cur.close()
         conn.close()
-        print("connection close")
+        # print("connection close")
 
     except Exception as err:
-        print("Error:", err)
+        # print("Error:", err)
         conn = None
         print("end conn ")
     return conn

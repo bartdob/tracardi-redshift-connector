@@ -11,12 +11,12 @@ class RedshiftConnectorAction(ActionRunner):
 
     def __init__(self, **kwargs):
         self.database = kwargs['dbname'] if 'dbname' in kwargs else None
-        self.database = kwargs['user'] if 'database' in kwargs else None
-        self.database = kwargs['password'] if 'database' in kwargs else None
-        self.database = kwargs['port'] if 'port' in kwargs else '5439'
+        self.user = kwargs['user'] if 'database' in kwargs else None
+        self.password = kwargs['password'] if 'database' in kwargs else None
+        self.port = kwargs['port'] if 'port' in kwargs else '5439'
 
     async def run(self, query):
-        result = await (redshift_conn(), query)
+        result = await (redshift_conn(self.database, self.user, self.password, self.port), query)
         return Result(port="payload", value=result)
 
 
