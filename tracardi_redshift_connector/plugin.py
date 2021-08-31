@@ -39,7 +39,7 @@ def register() -> Plugin:
     return Plugin(
         start=False,
         spec=Spec(
-            module='tracardi_redshift_connector.redshift_connector_action',
+            module='tracardi_redshift_connector.plugin',
             className='RedshiftConnectorAction',
             inputs=["payload"],
             outputs=['payload'],
@@ -47,16 +47,12 @@ def register() -> Plugin:
             license="MIT",
             author="Bartosz Dobrosielski",
             init={
-                "source": {
-                    "id": None,
-                },
-                "redshift": {
-                    "database": None,
-                    "host": None,
-                    "user": None,
-                    "password": None,
-                    "collection": None
-                }
+                "host": 'localhost',
+                "port": 5439,
+                "dbname": None,
+                "user": None,
+                "password": None,
+                "query": None
             }
 
         ),
@@ -66,7 +62,7 @@ def register() -> Plugin:
             type='flowNode',
             width=200,
             height=100,
-            icon='redshift',
+            icon='postgres',
             group=["Connectors"]
         )
     )
