@@ -5,7 +5,7 @@ from tracardi_redshift_connector.redshift_connector_action import RedshiftConnec
 init = dict(
     dbname='dev',
     user='awsuser',
-    password='Kaloryfer1',
+    password='***',
     host='3.123.191.145',
     port='5439',
     query="SELECT * FROM sales LIMIT 10;"
