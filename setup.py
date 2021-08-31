@@ -16,7 +16,7 @@ setup(
         'pydantic',
         'asyncio',
         'tracardi-plugin-sdk',
-        'psycopg'
+        'psycopg2-binary>=2.9.1'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
