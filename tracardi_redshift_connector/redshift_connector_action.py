@@ -1,23 +1,20 @@
-from typing import Optional
-
 from tracardi_plugin_sdk.domain.register import Plugin, Spec, MetaData
 from tracardi_plugin_sdk.action_runner import ActionRunner
 from tracardi_plugin_sdk.domain.result import Result
-
-from tracardi_redshift_connector.plugin.redshift_connector import redshift_conn
+from tracardi_redshift_connector.model.redshift import RedShift, Connection
 
 
 class RedshiftConnectorAction(ActionRunner):
 
     def __init__(self, **kwargs):
-        self.database = kwargs['dbname'] if 'dbname' in kwargs else None
-        self.user = kwargs['user'] if 'database' in kwargs else None
-        self.password = kwargs['password'] if 'database' in kwargs else None
-        self.port = kwargs['port'] if 'port' in kwargs else '5439'
+        self.db = RedShift(connection=Connection(**kwargs))
 
-    async def run(self, query):
-        result = await (redshift_conn(self.database, self.user, self.password, self.port), query)
+    async def run(self, payload):
+        result = self.db.query()
         return Result(port="payload", value=result)
+
+    async def close(self):
+        self.db.close()
 
 
 def register() -> Plugin:
