@@ -15,7 +15,7 @@ payload = {}
 
 
 async def main():
-    plugin = RedshiftConnectorAction(**init)
+    plugin = await RedshiftConnectorAction.build(**init)
     result = await plugin.run(payload)
     print(result)
 
