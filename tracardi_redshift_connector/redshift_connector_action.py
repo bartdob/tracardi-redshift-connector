@@ -1,7 +1,6 @@
 from typing import Optional
 
 import asyncpg
-from psycopg2._psycopg import Decimal
 from tracardi_plugin_sdk.domain.register import Plugin, Spec, MetaData
 from tracardi_plugin_sdk.action_runner import ActionRunner
 from tracardi_plugin_sdk.domain.result import Result
