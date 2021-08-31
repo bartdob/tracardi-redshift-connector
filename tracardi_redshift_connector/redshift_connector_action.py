@@ -8,9 +8,13 @@ class RedshiftConnectorAction(ActionRunner):
 
     def __init__(self, **kwargs):
         self.db = RedShift(connection=Connection(**kwargs))
+        if 'query' not in kwargs:
+            raise ValueError("Please define query.")
+
+        self.query = kwargs['query']
 
     async def run(self, payload):
-        result = self.db.query()
+        result = self.db.query(self.query)
         return Result(port="payload", value=result)
 
     async def close(self):

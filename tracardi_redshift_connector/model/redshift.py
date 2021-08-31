@@ -21,9 +21,9 @@ class RedShift:
     def __init__(self, connection: Connection):
         self.connection = connection.connect()
 
-    def query(self):
+    def query(self, query):
         cur = self.connection.cursor()
-        cur.execute(query=self.query)
+        cur.execute(query)
         rows = cur.fetchall()
         result = [row for row in rows]
         cur.close()
