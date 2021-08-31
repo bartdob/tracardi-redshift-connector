@@ -24,7 +24,7 @@ def register() -> Plugin:
     return Plugin(
         start=False,
         spec=Spec(
-            module='tracardi_redshift_connector',
+            module='tracardi_redshift_connector.redshift_connector_action',
             className='RedshiftConnectorAction',
             inputs=["query"],
             outputs=['payload'],

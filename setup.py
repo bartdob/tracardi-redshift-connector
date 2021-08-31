@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='tracardi-redshift-connector',
-    version='0.1',
+    version='0.1.1',
     description='The purpose of this plugin is to connect with amazon redshift',
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -15,7 +15,8 @@ setup(
     install_requires=[
         'pydantic',
         'asyncio',
-        'tracardi-plugin-sdk'
+        'tracardi-plugin-sdk',
+        'psycopg'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
