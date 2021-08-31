@@ -1,6 +1,9 @@
+import json
+from datetime import datetime, date
 from typing import Optional
 
 import asyncpg
+from decimal import Decimal
 from tracardi_plugin_sdk.domain.register import Plugin, Spec, MetaData
 from tracardi_plugin_sdk.action_runner import ActionRunner
 from tracardi_plugin_sdk.domain.result import Result
@@ -27,12 +30,29 @@ class RedshiftConnectorAction(ActionRunner):
 
     async def run(self, payload):
         result = await self.db.fetch(self.query, timeout=self.timeout)
-        result = [dict(record) for record in result]
-        return Result(port="payload", value=result)
+        result = [self.to_dict(record) for record in result]
+        return Result(port="payload", value={"result": result})
 
     async def close(self):
         if self.db:
             await self.db.close()
+
+    @staticmethod
+    def to_dict(record):
+
+        def json_default(obj):
+            """JSON serializer for objects not serializable by default json code"""
+
+            if isinstance(obj, (datetime, date)):
+                return obj.isoformat()
+
+            if isinstance(obj, Decimal):
+                return float(obj)
+
+            return str(record)
+
+        j = json.dumps(dict(record), default=json_default)
+        return json.loads(j)
 
 
 def register() -> Plugin:
