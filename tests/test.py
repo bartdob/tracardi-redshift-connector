@@ -9,9 +9,9 @@ load_dotenv()
 
 init = dict(
     dbname='dev',
-    user='awsuser',
+    user=os.environ['LOGIN'],
     password=os.environ['PASS'],
-    host='3.123.191.145',
+    host=os.environ['IP'],
     port='5439',
     query="SELECT * FROM sales LIMIT 10;"
 )
