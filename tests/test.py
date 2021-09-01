@@ -1,6 +1,6 @@
 import asyncio
 
-from tracardi_redshift_connector.redshift_connector_action import RedshiftConnectorAction
+from tracardi_redshift_connector.plugin import RedshiftConnectorAction
 
 init = dict(
     dbname='dev',
