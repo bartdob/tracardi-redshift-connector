@@ -1,1 +1,1 @@
-Tracardi Plugin to connect Tracardii to Amazon Redshift database
+Tracardi Plugin to connect Tracardi to Amazon Redshift database

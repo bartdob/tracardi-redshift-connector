@@ -1,2 +1,1 @@
-recursive-include tracardi_redshift/plugin *
-recursive-include tracardi_redshift/manual *
+recursive-include tracardi_redshift_connector/model *

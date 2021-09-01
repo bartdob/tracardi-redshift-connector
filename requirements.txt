@@ -1,4 +1,4 @@
 tracardi_plugin_sdk
-psycopg2-binary>=2.9.1
+asyncpg
 asyncio
 python-dotenv
