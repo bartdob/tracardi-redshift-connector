@@ -1,11 +1,16 @@
+import os
+
 import asyncio
+from dotenv import load_dotenv
 
 from tracardi_redshift_connector.plugin import RedshiftConnectorAction
+
+load_dotenv()
 
 init = dict(
     dbname='dev',
     user='awsuser',
-    password='Kaloryfer1',
+    password=os.environ['PASS'],
     host='3.123.191.145',
     port='5439',
     query="SELECT * FROM sales LIMIT 10;"
