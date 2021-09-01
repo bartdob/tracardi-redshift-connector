@@ -49,7 +49,7 @@ class RedshiftConnectorAction(ActionRunner):
             if isinstance(obj, Decimal):
                 return float(obj)
 
-            return str(record)
+            return str(obj)
 
         j = json.dumps(dict(record), default=json_default)
         return json.loads(j)
